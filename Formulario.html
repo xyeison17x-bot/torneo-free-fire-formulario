@@ -1,0 +1,1181 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscripcion Torneo Free Fire</title>
+  <style>
+    :root {
+      --bg-main: #080b12;
+      --bg-panel: rgba(14, 16, 22, 0.9);
+      --bg-soft: rgba(255, 255, 255, 0.04);
+      --line: rgba(255, 255, 255, 0.12);
+      --text: #f5f8ff;
+      --muted: #a6b2c8;
+      --accent: #ff6a00;
+      --accent-strong: #ffb000;
+      --accent-soft: rgba(255, 106, 0, 0.22);
+      --accent-red: #ff3c1f;
+      --success: #8ff3cb;
+      --danger: #ffb3be;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+      --radius: 26px;
+      --radius-sm: 18px;
+      --display: "Segoe UI", "Trebuchet MS", sans-serif;
+      --body: "Verdana", "Geneva", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--body);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 176, 0, 0.16), transparent 24%),
+        radial-gradient(circle at 78% 10%, rgba(255, 60, 31, 0.18), transparent 20%),
+        linear-gradient(135deg, #05070c 0%, #12161d 38%, #080b12 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), transparent 92%);
+    }
+
+    .container {
+      width: min(900px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 34px 0 52px;
+    }
+
+    .hero,
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--bg-panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      animation: fadeUp 0.85s ease both;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      margin-bottom: 24px;
+      background:
+        linear-gradient(135deg, rgba(255, 60, 31, 0.26), rgba(255, 106, 0, 0.08) 32%, rgba(255, 176, 0, 0.04) 55%, rgba(8, 11, 18, 0.9)),
+        var(--bg-panel);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, transparent 0 48%, rgba(255, 255, 255, 0.04) 48% 50%, transparent 50% 100%),
+        linear-gradient(145deg, transparent 0 62%, rgba(255, 176, 0, 0.12) 62% 66%, transparent 66% 100%);
+      pointer-events: none;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -70px;
+      width: 230px;
+      height: 230px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 176, 0, 0.46), transparent 70%);
+      filter: blur(10px);
+    }
+
+    .eyebrow,
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(135deg, rgba(255, 106, 0, 0.22), rgba(255, 176, 0, 0.08));
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      clip-path: polygon(0 0, 100% 0, 92% 100%, 0% 100%);
+    }
+
+    .eyebrow {
+      color: #ffe4c3;
+    }
+
+    .badge {
+      color: #fff1b8;
+      letter-spacing: 0.1em;
+    }
+
+    h1,
+    h2 {
+      margin: 0;
+      font-family: var(--display);
+      line-height: 1.05;
+    }
+
+    h1 {
+      margin-top: 18px;
+      max-width: 720px;
+      font-size: clamp(2.2rem, 5vw, 4.1rem);
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      text-shadow: 0 0 28px rgba(255, 106, 0, 0.16);
+    }
+
+    h2 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+    }
+
+    .hero p,
+    .section-header p,
+    .privacy p,
+    .status {
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 14px 0 0;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .hero-card {
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 106, 0, 0.08));
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 1rem;
+      color: #ffd56b;
+    }
+
+    .panel {
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .panel::before {
+      content: "";
+      position: absolute;
+      inset: auto -80px -80px auto;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(255, 60, 31, 0.16), transparent 70%);
+      pointer-events: none;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .section-header p {
+      margin: 10px 0 0;
+      font-size: 0.95rem;
+    }
+
+    form {
+      display: grid;
+      gap: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .field,
+    .field-full {
+      display: grid;
+      gap: 8px;
+      position: relative;
+    }
+
+    .field-full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      color: #ffe9c7;
+      font-size: 0.92rem;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--text);
+      font: inherit;
+      outline: none;
+      transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    select option {
+      color: #111827;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px var(--accent-soft);
+      transform: translateY(-1px);
+    }
+
+    textarea {
+      min-height: 110px;
+      resize: vertical;
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .mode-helper {
+      margin: -4px 0 6px;
+      color: #ffd56b;
+      font-size: 0.82rem;
+      line-height: 1.5;
+    }
+
+    .error-text {
+      min-height: 18px;
+      color: var(--danger);
+      font-size: 0.78rem;
+      line-height: 1.35;
+    }
+
+    .field.has-error input,
+    .field.has-error select,
+    .field.has-error textarea,
+    .field-full.has-error input,
+    .field-full.has-error select,
+    .field-full.has-error textarea {
+      border-color: rgba(255, 99, 99, 0.8);
+      box-shadow: 0 0 0 4px rgba(255, 99, 99, 0.12);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 20px;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s ease, filter 0.2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-red), var(--accent), var(--accent-strong));
+      color: #fff;
+      box-shadow: 0 16px 34px rgba(255, 106, 0, 0.32);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .status {
+      min-height: 26px;
+      margin: 0;
+      font-size: 0.92rem;
+    }
+
+    .status.success {
+      color: var(--success);
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .privacy {
+      margin-top: 20px;
+      padding: 20px;
+      border-radius: var(--radius-sm);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04), rgba(255, 176, 0, 0.06));
+    }
+
+    .privacy h3 {
+      margin: 0 0 10px;
+      font-family: var(--display);
+      font-size: 1rem;
+    }
+
+    .privacy p {
+      margin: 0;
+      font-size: 0.92rem;
+    }
+
+    .admin-access {
+      margin-top: 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .admin-link {
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.32);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .admin-link:hover {
+      transform: none;
+      filter: none;
+      color: rgba(255, 213, 107, 0.82);
+    }
+
+    .checkbox-field {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .checkbox-field input {
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      padding: 0;
+      accent-color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .checkbox-field label {
+      font-size: 0.86rem;
+      line-height: 1.6;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--muted);
+    }
+
+    .checkbox-field input:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+
+    .inline-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: #ffd56b;
+      font: inherit;
+      font-weight: 700;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .inline-link:hover {
+      transform: none;
+      filter: none;
+      color: #fff1b8;
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      padding: 20px;
+      background: rgba(4, 7, 12, 0.72);
+      backdrop-filter: blur(6px);
+      z-index: 50;
+    }
+
+    .modal-backdrop[hidden] {
+      display: none;
+    }
+
+    .modal {
+      width: min(760px, 100%);
+      max-height: min(86vh, 900px);
+      overflow: auto;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      background:
+        linear-gradient(135deg, rgba(255, 60, 31, 0.18), rgba(255, 176, 0, 0.06) 28%, rgba(14, 16, 22, 0.96) 60%),
+        rgba(14, 16, 22, 0.98);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.58);
+    }
+
+    .modal-header,
+    .modal-body,
+    .modal-footer {
+      padding-left: 24px;
+      padding-right: 24px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      padding-top: 24px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      font-family: var(--display);
+      font-size: 1.35rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .modal-header p {
+      margin: 8px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.92rem;
+    }
+
+    .modal-close {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 1.1rem;
+      flex: 0 0 auto;
+    }
+
+    .modal-body {
+      padding-top: 18px;
+      padding-bottom: 18px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.93rem;
+    }
+
+    .modal-body h4 {
+      margin: 0 0 8px;
+      color: #ffe9c7;
+      font-family: var(--display);
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .modal-body section + section {
+      margin-top: 18px;
+    }
+
+    .modal-body ul {
+      margin: 10px 0 0;
+      padding-left: 18px;
+    }
+
+    .modal-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding-top: 16px;
+      padding-bottom: 24px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .honeypot {
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px !important;
+      height: 1px !important;
+      overflow: hidden !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+    [hidden-field] {
+      display: none !important;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .container {
+        width: min(100% - 20px, 900px);
+        padding-top: 20px;
+      }
+
+      .hero,
+      .panel {
+        padding: 20px;
+      }
+
+      .grid,
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+
+      .section-header {
+        display: grid;
+      }
+
+      .modal-header,
+      .modal-body,
+      .modal-footer {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <div class="eyebrow">Booyah Zone</div>
+      <h1>Registro oficial del torneo Free Fire</h1>
+      <p>Preparate para entrar al campo de batalla. Completa este registro con tus datos reales para validar tu cupo y asegurar tu participacion en el evento.</p>
+
+      <div class="hero-grid">
+        <article class="hero-card">
+          <strong>Drop 1</strong>
+          <span>Ingresa tus datos de jugador y contacto.</span>
+        </article>
+        <article class="hero-card">
+          <strong>Drop 2</strong>
+          <span>Revisa tu UID antes de enviar la inscripcion.</span>
+        </article>
+        <article class="hero-card">
+          <strong>Drop 3</strong>
+          <span>Espera la confirmacion del staff del torneo.</span>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="section-header">
+        <div>
+          <h2>Zona de registro</h2>
+          <p>Completa tu inscripcion. Si quedas confirmado, te contactaremos por los datos que registres aqui.</p>
+        </div>
+        <span class="badge">Modo competitivo</span>
+      </div>
+
+      <form id="participantForm" method="POST" novalidate>
+        <input type="hidden" name="subject" value="Nueva inscripcion torneo Free Fire">
+        <input type="hidden" name="submittedAt" value="">
+        <div class="honeypot" aria-hidden="true">
+          <label for="teamWebsite">No llenar este campo</label>
+          <input id="teamWebsite" name="teamWebsite" type="text" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="grid">
+          <div class="field-full">
+            <p class="mode-helper" id="modeHelper">Selecciona tu modalidad para mostrar los campos correctos del registro.</p>
+          </div>
+
+          <div class="field">
+            <label for="nickname">Nickname</label>
+            <input id="nickname" name="nickname" type="text" maxlength="20" placeholder="Ej: FenixPro" required>
+            <span class="error-text" data-error-for="nickname"></span>
+          </div>
+
+          <div class="field">
+            <label for="uid">UID Free Fire</label>
+            <input id="uid" name="uid" type="text" inputmode="numeric" pattern="[0-9]{6,15}" placeholder="Solo numeros" required>
+            <span class="error-text" data-error-for="uid"></span>
+          </div>
+
+          <div class="field">
+            <label for="fullName">Nombre completo</label>
+            <input id="fullName" name="fullName" type="text" maxlength="60" placeholder="Nombre y apellido" required>
+            <span class="error-text" data-error-for="fullName"></span>
+          </div>
+
+          <div class="field">
+            <label for="age">Edad</label>
+            <input id="age" name="age" type="number" min="10" max="60" placeholder="Ej: 18" required>
+            <span class="error-text" data-error-for="age"></span>
+          </div>
+
+          <div class="field">
+            <label for="phone">Telefono</label>
+            <input id="phone" name="phone" type="tel" maxlength="20" placeholder="Ej: 3001234567" required>
+            <span class="error-text" data-error-for="phone"></span>
+          </div>
+
+          <div class="field">
+            <label for="email">Correo electronico</label>
+            <input id="email" name="email" type="email" maxlength="80" placeholder="jugador@email.com">
+            <span class="error-text" data-error-for="email"></span>
+          </div>
+
+          <div class="field">
+            <label for="squad">Escuadra o clan</label>
+            <input id="squad" name="squad" type="text" maxlength="30" placeholder="Opcional">
+            <span class="error-text" data-error-for="squad"></span>
+          </div>
+
+          <div class="field" id="teamNameField" hidden-field>
+            <label for="teamName">Nombre del equipo</label>
+            <input id="teamName" name="teamName" type="text" maxlength="40" placeholder="Ej: Alpha Wolves">
+            <span class="error-text" data-error-for="teamName"></span>
+          </div>
+
+          <div class="field">
+            <label for="mode">Modalidad</label>
+            <select id="mode" name="mode" required>
+              <option value="">Selecciona una modalidad</option>
+              <option value="Solo">Solo</option>
+              <option value="Duo">Duo</option>
+              <option value="Squad">Squad</option>
+            </select>
+            <span class="error-text" data-error-for="mode"></span>
+          </div>
+
+          <div class="field">
+            <label for="role">Rol principal</label>
+            <select id="role" name="role" required>
+              <option value="">Selecciona un rol</option>
+              <option value="Rusher">Rusher</option>
+              <option value="Support">Support</option>
+              <option value="Sniper">Sniper</option>
+              <option value="Lider">Lider</option>
+              <option value="Flexible">Flexible</option>
+            </select>
+            <span class="error-text" data-error-for="role"></span>
+          </div>
+
+          <div class="field">
+            <label for="region">Region</label>
+            <select id="region" name="region" required>
+              <option value="">Selecciona una region</option>
+              <option value="Norte">Norte</option>
+              <option value="Centro">Centro</option>
+              <option value="Sur">Sur</option>
+              <option value="Internacional">Internacional</option>
+            </select>
+            <span class="error-text" data-error-for="region"></span>
+          </div>
+
+          <div class="field">
+            <label for="device">Dispositivo</label>
+            <select id="device" name="device" required>
+              <option value="">Selecciona un dispositivo</option>
+              <option value="Android">Android</option>
+              <option value="iPhone">iPhone</option>
+              <option value="Tablet">Tablet</option>
+              <option value="Emulador">Emulador</option>
+            </select>
+            <span class="error-text" data-error-for="device"></span>
+          </div>
+
+          <div class="field-full">
+            <label for="notes">Notas</label>
+            <textarea id="notes" name="notes" maxlength="180" placeholder="Si deseas, agrega informacion extra como disponibilidad o nombre de tu escuadra completa."></textarea>
+            <span class="hint">Maximo 180 caracteres.</span>
+            <span class="error-text" data-error-for="notes"></span>
+          </div>
+
+          <div class="field-full">
+            <div class="checkbox-field">
+              <input id="termsAccepted" name="termsAccepted" type="checkbox" required disabled>
+              <label for="termsAccepted">Confirmo que los datos enviados son correctos y acepto los <button class="inline-link" type="button" id="openTermsModal">terminos, condiciones y politicas de tratamiento de datos</button> para fines de registro y contacto.</label>
+            </div>
+            <span class="error-text" data-error-for="termsAccepted"></span>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button class="btn-primary" type="submit">Enviar inscripcion</button>
+          <button class="btn-secondary" type="reset">Limpiar formulario</button>
+        </div>
+
+        <p class="status" id="statusMessage">Completa el formulario y envia tu inscripcion.</p>
+      </form>
+
+      <div class="privacy">
+        <h3>Privacidad del participante</h3>
+        <p>Este formulario no muestra otros inscritos. Si tu registro es aprobado, te contactaremos con la informacion que compartiste aqui.</p>
+      </div>
+
+      <div class="admin-access">
+        <button class="admin-link" type="button" id="adminAccessButton">Acceso staff</button>
+      </div>
+
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="termsModal" hidden>
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="termsModalTitle">
+      <div class="modal-header">
+        <div>
+          <h3 id="termsModalTitle">Terminos y Condiciones</h3>
+          <p>Lee esta informacion antes de aceptar el registro del torneo.</p>
+        </div>
+        <button class="modal-close" type="button" id="closeTermsModal" aria-label="Cerrar">X</button>
+      </div>
+
+      <div class="modal-body">
+        <section>
+          <h4>1. Registro del jugador</h4>
+          <p>El participante declara que la informacion enviada en este formulario es real, actual y corresponde a su cuenta y datos de contacto.</p>
+        </section>
+
+        <section>
+          <h4>2. Reglas del torneo</h4>
+          <p>El registro no garantiza cupo automatico. La organizacion validara la informacion y podra confirmar o rechazar la participacion segun disponibilidad, reglas del evento y cumplimiento de requisitos.</p>
+          <ul>
+            <li>El jugador debe respetar las normas del torneo y las decisiones del staff.</li>
+            <li>No se permite suplantacion, informacion falsa o uso de cuentas ajenas.</li>
+            <li>El incumplimiento de reglas puede causar anulacion del registro o descalificacion.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>3. Tratamiento de datos</h4>
+          <p>Los datos recopilados se utilizaran unicamente para gestionar la inscripcion, verificar participantes y contactar a los jugadores en relacion con este torneo.</p>
+          <ul>
+            <li>Los datos no se mostraran publicamente en este formulario.</li>
+            <li>Solo el equipo organizador tendra acceso a la informacion registrada.</li>
+            <li>El participante autoriza el uso de sus datos para fines de contacto y organizacion del evento.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h4>4. Contacto y confirmacion</h4>
+          <p>Si el participante queda confirmado, la organizacion lo contactara por los medios registrados en este formulario.</p>
+        </section>
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn-secondary" type="button" id="acceptTermsFromModal">Entendido</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const FORMSPREE_ENDPOINT = "https://formspree.io/f/xgopqdjn";
+    const form = document.getElementById("participantForm");
+    const statusMessage = document.getElementById("statusMessage");
+    const termsModal = document.getElementById("termsModal");
+    const openTermsModalButton = document.getElementById("openTermsModal");
+    const closeTermsModalButton = document.getElementById("closeTermsModal");
+    const acceptTermsFromModalButton = document.getElementById("acceptTermsFromModal");
+    const adminAccessButton = document.getElementById("adminAccessButton");
+    const modeField = document.getElementById("mode");
+    const squadField = document.getElementById("squad");
+    const teamNameField = document.getElementById("teamName");
+    const teamNameFieldWrap = document.getElementById("teamNameField");
+    const modeHelper = document.getElementById("modeHelper");
+    const termsAcceptedField = document.getElementById("termsAccepted");
+    const ADMIN_ACCESS_PASSWORD = "adminfreefire2026";
+    const successMessage = "Inscripcion enviada correctamente. Te contactaremos si quedas confirmado.";
+    const defaultMessage = "Completa el formulario y envia tu inscripcion.";
+    let hasViewedTerms = false;
+    let nativeSubmitting = false;
+    const fieldNames = [
+      "nickname",
+      "uid",
+      "fullName",
+      "age",
+      "phone",
+      "email",
+      "squad",
+      "teamName",
+      "mode",
+      "role",
+      "region",
+      "device",
+      "notes",
+      "termsAccepted"
+    ];
+
+    function setStatus(message, type = "") {
+      statusMessage.textContent = message;
+      statusMessage.className = "status" + (type ? " " + type : "");
+    }
+
+    function openTermsModal() {
+      termsModal.hidden = false;
+      document.body.style.overflow = "hidden";
+      closeTermsModalButton.focus();
+    }
+
+    function closeTermsModal() {
+      termsModal.hidden = true;
+      document.body.style.overflow = "";
+      openTermsModalButton.focus();
+    }
+
+    function updateModeUI() {
+      const mode = modeField.value;
+
+      if (mode === "Solo") {
+        teamNameFieldWrap.setAttribute("hidden-field", "");
+        teamNameField.value = "";
+        squadField.placeholder = "Clan opcional";
+        modeHelper.textContent = "Modo Solo: puedes dejar clan opcional. No necesitas nombre de equipo.";
+      } else if (mode === "Duo" || mode === "Squad") {
+        teamNameFieldWrap.removeAttribute("hidden-field");
+        squadField.placeholder = "Clan u organizacion";
+        modeHelper.textContent = "Modo " + mode + ": registra tambien el nombre del equipo para validar tu cupo.";
+      } else {
+        teamNameFieldWrap.setAttribute("hidden-field", "");
+        teamNameField.value = "";
+        squadField.placeholder = "Opcional";
+        modeHelper.textContent = "Selecciona tu modalidad para mostrar los campos correctos del registro.";
+      }
+
+      const teamError = form.querySelector('[data-error-for="teamName"]');
+      if (teamError && teamNameFieldWrap.hasAttribute("hidden-field")) {
+        teamError.textContent = "";
+      }
+    }
+
+    function unlockTermsAcceptance() {
+      hasViewedTerms = true;
+      termsAcceptedField.disabled = false;
+      closeTermsModal();
+      termsAcceptedField.focus();
+    }
+
+    function handleAdminAccess() {
+      const password = window.prompt("Ingresa la clave de staff:");
+      if (password === null) {
+        return;
+      }
+
+      if (password === ADMIN_ACCESS_PASSWORD) {
+        window.location.href = "admin.html";
+        return;
+      }
+
+      window.alert("Clave incorrecta.");
+    }
+
+    function clearFieldErrors() {
+      form.querySelectorAll(".has-error").forEach((field) => field.classList.remove("has-error"));
+      form.querySelectorAll("[data-error-for]").forEach((item) => {
+        item.textContent = "";
+      });
+    }
+
+    function showFieldError(fieldName, message) {
+      const input = form.elements[fieldName];
+      const container = input ? input.closest(".field, .field-full") : null;
+      const errorText = form.querySelector(`[data-error-for="${fieldName}"]`);
+
+      if (container) {
+        container.classList.add("has-error");
+      }
+
+      if (errorText) {
+        errorText.textContent = message;
+      }
+    }
+
+    function applyValidationErrors(errors) {
+      clearFieldErrors();
+      Object.entries(errors).forEach(([fieldName, message]) => {
+        if (message) {
+          showFieldError(fieldName, message);
+        }
+      });
+    }
+
+    function getFormData() {
+      const formData = new FormData(form);
+      return {
+        nickname: formData.get("nickname").trim(),
+        uid: formData.get("uid").trim(),
+        fullName: formData.get("fullName").trim(),
+        age: formData.get("age").trim(),
+        phone: formData.get("phone").trim(),
+        email: formData.get("email").trim(),
+        squad: formData.get("squad").trim(),
+        teamName: formData.get("teamName").trim(),
+        mode: formData.get("mode").trim(),
+        role: formData.get("role").trim(),
+        region: formData.get("region").trim(),
+        device: formData.get("device").trim(),
+        notes: formData.get("notes").trim(),
+        teamWebsite: formData.get("teamWebsite").trim(),
+        termsAccepted: formData.get("termsAccepted") === "on"
+      };
+    }
+
+    function validateParticipant(player) {
+      const errors = {};
+      const ageNumber = Number(player.age);
+      const phoneDigits = player.phone.replace(/\D/g, "");
+
+      if (!player.nickname) {
+        errors.nickname = "Ingresa tu nickname.";
+      }
+
+      if (!player.uid) {
+        errors.uid = "Ingresa tu UID.";
+      } else if (!/^\d{6,15}$/.test(player.uid)) {
+        errors.uid = "El UID debe tener entre 6 y 15 digitos.";
+      }
+
+      if (!player.fullName) {
+        errors.fullName = "Ingresa tu nombre completo.";
+      }
+
+      if (!player.age) {
+        errors.age = "Ingresa tu edad.";
+      } else if (!Number.isInteger(ageNumber) || ageNumber < 10 || ageNumber > 60) {
+        errors.age = "La edad debe estar entre 10 y 60 anos.";
+      }
+
+      if (!player.phone) {
+        errors.phone = "Ingresa tu telefono.";
+      } else if (!/^\d{7,15}$/.test(phoneDigits)) {
+        errors.phone = "El telefono debe tener entre 7 y 15 digitos.";
+      }
+
+      if (player.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(player.email)) {
+        errors.email = "Ingresa un correo valido.";
+      }
+
+      if (!player.mode) {
+        errors.mode = "Selecciona una modalidad.";
+      } else if ((player.mode === "Duo" || player.mode === "Squad") && !player.teamName) {
+        errors.teamName = "Ingresa el nombre del equipo.";
+      }
+
+      if (!player.role) {
+        errors.role = "Selecciona tu rol principal.";
+      }
+
+      if (!player.region) {
+        errors.region = "Selecciona tu region.";
+      }
+
+      if (!player.device) {
+        errors.device = "Selecciona tu dispositivo.";
+      }
+
+      if (!player.termsAccepted) {
+        errors.termsAccepted = "Debes aceptar las reglas y el tratamiento de datos.";
+      }
+
+      if (!hasViewedTerms) {
+        errors.termsAccepted = "Primero abre y revisa los terminos y condiciones.";
+      }
+
+      if (player.teamWebsite) {
+        errors.nickname = "No se pudo enviar el formulario.";
+      }
+
+      return errors;
+    }
+
+    function setSubmittingState(isSubmitting) {
+      const button = form.querySelector('button[type="submit"]');
+      button.disabled = isSubmitting;
+      button.textContent = isSubmitting ? "Enviando..." : "Enviar inscripcion";
+    }
+
+    async function submitToFormspree() {
+      const formData = new FormData(form);
+      const response = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Accept": "application/json"
+        },
+        body: formData
+      });
+
+      const data = await response.json().catch(() => ({}));
+      if (!response.ok) {
+        throw new Error(data.errors?.[0]?.message || "No se pudo enviar la inscripcion.");
+      }
+    }
+
+    function clearFormKeepingStatus() {
+      clearFieldErrors();
+      form.reset();
+    }
+
+    form.addEventListener("submit", async (event) => {
+      if (nativeSubmitting) {
+        return;
+      }
+
+      event.preventDefault();
+      clearFieldErrors();
+      const participant = getFormData();
+      const validationErrors = validateParticipant(participant);
+
+      if (Object.keys(validationErrors).length > 0) {
+        applyValidationErrors(validationErrors);
+        setStatus("Revisa los campos marcados para continuar.", "error");
+        return;
+      }
+
+      if (FORMSPREE_ENDPOINT === "PEGAR_AQUI_ENDPOINT_DE_FORMSPREE") {
+        setStatus("Falta configurar el endpoint de Formspree.", "error");
+        return;
+      }
+
+      form.elements.submittedAt.value = new Date().toISOString();
+      try {
+        nativeSubmitting = true;
+        setSubmittingState(true);
+        setStatus("Enviando inscripcion...", "");
+        await submitToFormspree();
+        clearFormKeepingStatus();
+        hasViewedTerms = false;
+        termsAcceptedField.disabled = true;
+        updateModeUI();
+        setStatus(successMessage, "success");
+      } catch (error) {
+        setStatus(error.message || "No se pudo enviar la inscripcion.", "error");
+      } finally {
+        nativeSubmitting = false;
+        setSubmittingState(false);
+      }
+    });
+
+    form.addEventListener("reset", () => {
+      window.setTimeout(() => {
+        clearFieldErrors();
+        if (statusMessage.textContent !== successMessage) {
+          setStatus(defaultMessage);
+        }
+      }, 0);
+    });
+
+    fieldNames.forEach((fieldName) => {
+      const field = form.elements[fieldName];
+      if (!field) {
+        return;
+      }
+
+      field.addEventListener("input", () => {
+        const container = field.closest(".field, .field-full");
+        const errorText = form.querySelector(`[data-error-for="${fieldName}"]`);
+        if (container) {
+          container.classList.remove("has-error");
+        }
+        if (errorText) {
+          errorText.textContent = "";
+        }
+      });
+
+      field.addEventListener("change", () => {
+        const container = field.closest(".field, .field-full");
+        const errorText = form.querySelector(`[data-error-for="${fieldName}"]`);
+        if (container) {
+          container.classList.remove("has-error");
+        }
+        if (errorText) {
+          errorText.textContent = "";
+        }
+      });
+    });
+
+    openTermsModalButton.addEventListener("click", openTermsModal);
+    closeTermsModalButton.addEventListener("click", closeTermsModal);
+    acceptTermsFromModalButton.addEventListener("click", unlockTermsAcceptance);
+    adminAccessButton.addEventListener("click", handleAdminAccess);
+    modeField.addEventListener("change", updateModeUI);
+
+    termsModal.addEventListener("click", (event) => {
+      if (event.target === termsModal) {
+        closeTermsModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !termsModal.hidden) {
+        closeTermsModal();
+      }
+    });
+
+    updateModeUI();
+
+  </script>
+</body>
+</html>

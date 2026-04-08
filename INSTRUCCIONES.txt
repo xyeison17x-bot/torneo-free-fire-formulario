@@ -1,0 +1,35 @@
+CONFIGURACION RAPIDA EN VERCEL + FORMSPREE
+
+1. Crea una cuenta o entra a https://formspree.io
+
+2. Crea un formulario nuevo en Formspree.
+
+3. Copia el endpoint del formulario.
+   Suele verse asi:
+   https://formspree.io/f/xxxxabcd
+
+4. Abre Formulario.html y reemplaza:
+   const FORMSPREE_ENDPOINT = "PEGAR_AQUI_ENDPOINT_DE_FORMSPREE";
+   por tu endpoint real.
+
+5. Sube esta carpeta a Vercel.
+
+6. Cuando el sitio quede publicado, abre el formulario y realiza una prueba real.
+
+7. Luego entra a tu panel de Formspree.
+
+8. Ahi veras todas las inscripciones enviadas.
+
+9. Desde Formspree puedes revisar envios, recibir notificaciones y exportar datos.
+
+ARCHIVOS
+
+- Formulario.html: formulario publico listo para Vercel + Formspree
+- Admin.html: acceso rapido con recordatorio para entrar al panel de Formspree
+- thank-you/index.html: pagina de confirmacion despues del envio
+- GoogleAppsScript.gs: archivo anterior, ya no es necesario para este flujo
+
+NOTA
+
+- El campo oculto honeypot ya esta configurado para ayudar con spam basico.
+- Si quieres, el siguiente paso puede ser agregar redireccion a pagina de gracias desde Formspree o correos de respuesta automatica.
